@@ -1,0 +1,31 @@
+SYNTHETIC DEVELOPMENT FIXTURE — NOT AN OFFICIAL CANADABUYS RECORD
+
+Solicitation: DEMO-2026-001
+Title: Supply and delivery of rugged laptops
+Buyer: Example Federal Department
+Publication date: 2026-08-01
+Question deadline: 2026-08-14 14:00 America/Toronto
+Closing deadline: 2026-08-28 14:00 America/Toronto
+Contract term: One year with two optional one-year extensions.
+
+1. Scope
+The contractor must supply 120 rugged laptops and deliver them to Ottawa, Ontario within 60 calendar days after contract award.
+
+2. Mandatory requirements
+M1. The bidder must be registered to conduct business in Canada at bid closing.
+M2. The proposed laptop must include at least 32 GB RAM, a 1 TB solid-state drive, Wi-Fi 6E, and a three-year manufacturer warranty.
+M3. The bidder must provide evidence of two completed contracts in the last five years for delivery of at least 50 comparable devices.
+M4. A bid security of CAD 25,000 must accompany the bid.
+
+3. Rated requirements
+R1. Up to 20 points are available for delivery earlier than 60 calendar days.
+R2. Up to 15 points are available for an extended warranty beyond three years.
+
+4. Basis of selection
+The responsive bid with the highest combined technical and price score will be recommended for award. Mandatory requirements are evaluated before rated requirements.
+
+5. Submission
+Technical and financial proposals must be uploaded as separate PDF files through the authorized tendering portal before the closing deadline. Late submissions will not be accepted.
+
+6. Clarification
+The notice does not publish whether equivalent manufacturer certifications will be accepted. Questions must be submitted before the question deadline.

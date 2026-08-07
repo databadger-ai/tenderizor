@@ -1,0 +1,123 @@
+name: canadabuys-tender-assistant
+
+services:
+  postgres:
+    image: postgres:17.6-alpine
+    environment:
+      POSTGRES_DB: canadabuys
+      POSTGRES_USER: canadabuys
+      POSTGRES_PASSWORD: canadabuys
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U canadabuys -d canadabuys"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  temporal-volume-init:
+    image: temporalio/temporal:1.8.1
+    user: "0:0"
+    entrypoint: ["/bin/sh", "-c"]
+    command: ["chown -R 1000:1000 /data"]
+    volumes:
+      - temporal-data:/data
+    restart: "no"
+
+  temporal:
+    image: temporalio/temporal:1.8.1
+    command: ["server", "start-dev", "--ip", "0.0.0.0", "--db-filename", "/data/temporal.db"]
+    depends_on:
+      temporal-volume-init:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "temporal", "operator", "cluster", "health", "--address", "temporal:7233"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    volumes:
+      - temporal-data:/data
+    ports:
+      - "7233:7233"
+      - "8233:8233"
+
+  migrate:
+    build:
+      context: ./backend
+    command: ["alembic", "upgrade", "head"]
+    environment:
+      DATABASE_URL: postgresql+asyncpg://canadabuys:canadabuys@postgres:5432/canadabuys
+      APP_ENV: development
+      LOG_LEVEL: INFO
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+
+  api:
+    build:
+      context: ./backend
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    env_file:
+      - .env.local
+    environment:
+      DATABASE_URL: postgresql+asyncpg://canadabuys:canadabuys@postgres:5432/canadabuys
+      TEMPORAL_ADDRESS: temporal:7233
+      TEMPORAL_NAMESPACE: default
+      TEMPORAL_TASK_QUEUE: canadabuys-tender-analysis
+      APP_ENV: development
+      LOG_LEVEL: INFO
+      CORS_ORIGINS: '["http://localhost:5173","http://localhost:3100"]'
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      temporal:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health/live')"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+    ports:
+      - "8000:8000"
+
+  worker:
+    build:
+      context: ./backend
+    command: ["python", "-m", "app.worker"]
+    env_file:
+      - .env.local
+    environment:
+      DATABASE_URL: postgresql+asyncpg://canadabuys:canadabuys@postgres:5432/canadabuys
+      TEMPORAL_ADDRESS: temporal:7233
+      TEMPORAL_NAMESPACE: default
+      TEMPORAL_TASK_QUEUE: canadabuys-tender-analysis
+      APP_ENV: development
+      LOG_LEVEL: INFO
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      temporal:
+        condition: service_healthy
+
+  web:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: /api/v1
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+    ports:
+      - "127.0.0.1:${WEB_PORT:-3100}:80"
+
+volumes:
+  postgres-data:
+  temporal-data:

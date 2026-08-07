@@ -1,0 +1,1 @@
+"""CanadaBuys Tender Assistant backend."""
