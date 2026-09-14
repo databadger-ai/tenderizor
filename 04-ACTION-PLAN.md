@@ -4,7 +4,7 @@
 
 Deliver a sequence of production-shaped vertical slices. Every phase has an explicit exit gate and rollback boundary. Do not start autonomous external actions; the final production pilot remains read-only/draft-only with human submission.
 
-Indicative schedule: 14–18 calendar weeks with the team described in README. Estimates assume the existing Verel API, React shell, auth patterns, event contracts, Docker build, and observability foundations are reused.
+Indicative schedule: 14–18 calendar weeks with the team described in README. Estimates assume the existing host-platform API, React shell, auth patterns, event contracts, Docker build, and observability foundations are reused.
 
 ## 2. Workstreams
 
@@ -59,7 +59,7 @@ Effort: 13–18 person-weeks
 
 Deliverables:
 
-- tender capability scaffold in Verel;
+- tender capability scaffold in the host platform;
 - versioned cross-service/task/event contracts;
 - PostgreSQL schemas/migrations and immutable object storage;
 - OIDC/RBAC context and tenant isolation;
@@ -116,7 +116,7 @@ Effort: 16–22 person-weeks
 
 Deliverables:
 
-- PydanticAI runtime behind stable Verel contracts;
+- PydanticAI runtime behind stable host-platform contracts;
 - ten role definitions and adaptive activation;
 - versioned skill/capability registry and filtered toolsets;
 - always-on authorization, evidence, budget, privacy, event and audit hooks;
@@ -245,7 +245,7 @@ Rollback:
 - approve scope, roles, data boundaries and open decisions;
 - observe and time the current workflow;
 - select 30–50 representative historical/live tenders for corpus design;
-- inventory existing Verel seams and deployment constraints;
+- inventory existing host-platform seams and deployment constraints;
 - create threat model and provider questionnaire.
 
 ### Week 2

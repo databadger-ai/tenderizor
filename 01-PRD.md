@@ -48,7 +48,7 @@ Connect opportunities, decisions, bids, awards, contract amendments, delivery ou
 - Inferring confidential competitor prices or coordinating pricing with competitors.
 - Treating historical awards as the range of all submitted offers.
 - Creating a separate deployable service for each AI persona.
-- Rewriting the rest of Verel as part of this product.
+- Rewriting the rest of the host platform as part of this product.
 
 ## 5. Users and roles
 
@@ -266,7 +266,7 @@ For awards and contract history, the normalized view must include buyer, product
 
 ## 8. Minimal transparent UI
 
-The UI should use the existing Verel React shell and design primitives. It should contain:
+The UI should use the existing host-platform React shell and design primitives. It should contain:
 
 1. Work inbox — new tenders, amendments, approvals, deadlines, failures, and assignments.
 2. Opportunity pipeline — configurable stages from New through Outcome.
@@ -432,7 +432,7 @@ Additional public-sector sources, ERP/CRM integrations, delivery learning, and o
 
 ## 16. Dependencies
 
-- Verel capability, runtime, event, identity, and UI contracts.
+- Host-platform capability, runtime, event, identity, and UI contracts.
 - Official CanadaBuys data sources and source-specific access permissions.
 - PydanticAI 2.x, pinned and conformance-tested.
 - Temporal proof of concept and operational ownership decision.
@@ -449,7 +449,7 @@ Additional public-sector sources, ERP/CRM integrations, delivery learning, and o
 | OD-02 | Company entities, categories, regions, and capacity profile | Phase 0 |
 | OD-03 | Model provider(s), Canadian region, retention, and confidential-data terms | Architecture gate |
 | OD-04 | Temporal Cloud versus self-hosted Temporal | Production design |
-| OD-05 | Existing Verel deployment versus separately isolated environment | Architecture gate |
+| OD-05 | Existing host-platform deployment versus separately isolated environment | Architecture gate |
 | OD-06 | SSO provider and role owners | MVP build |
 | OD-07 | Pricing approval thresholds and separation of duties | Commercial build |
 | OD-08 | Record retention, legal hold, and deletion policy | Security gate |

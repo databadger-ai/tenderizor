@@ -4,9 +4,9 @@ Accessed 2026-07-31 unless otherwise noted. Primary and authoritative sources ar
 
 ## 1. Repository evidence
 
-- [Verel fleet agent guide](../../CLAUDE.md)
-- [Verel Team Contract](../ARCHITECTURE.md)
-- [Verel platform architecture](../../platform/docs/architecture.md)
+- [host-platform fleet agent guide](../../CLAUDE.md)
+- [host-platform Team Contract](../ARCHITECTURE.md)
+- [host platform architecture](../../platform/docs/architecture.md)
 - [Existing PydanticAI refactor proposal](../../platform/docs/PYDANTIC_AI_REFACTOR_PROPOSAL.md)
 - [Platform Python dependencies](../../platform/pyproject.toml)
 - [Frontend dependencies and commands](../../platform/frontend/package.json)

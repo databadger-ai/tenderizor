@@ -6,8 +6,8 @@ These decisions are Proposed until accepted through the Phase 0 gate.
 
 | ADR | Decision | Status | Consequence |
 |---|---|---|---|
-| ADR-TND-001 | Add tender intelligence as a Verel capability/preset, not a product fork | Proposed | Reuses one kernel/UI/auth; must respect existing contracts |
-| ADR-TND-002 | Use PydanticAI 2.x only behind Verel-owned typed runtime/task/event contracts | Proposed | Gains typed agent features without framework-owned business policy |
+| ADR-TND-001 | Add tender intelligence as a host-platform capability/preset, not a product fork | Proposed | Reuses one kernel/UI/auth; must respect existing contracts |
+| ADR-TND-002 | Use PydanticAI 2.x only behind host-platform-owned typed runtime/task/event contracts | Proposed | Gains typed agent features without framework-owned business policy |
 | ADR-TND-003 | Use Temporal for durable tender workflows, subject to POC; DBOS is fallback | Proposed | Strong durability/HITL at meaningful operational cost |
 | ADR-TND-004 | Use coarse-grained services; agents are logical roles in worker pools | Proposed | Independent scaling without ten service deployments |
 | ADR-TND-005 | PostgreSQL is authoritative for tender/business/audit state | Proposed | Adds/standardizes an operational store; requires ownership and migration plan |
@@ -17,7 +17,7 @@ These decisions are Proposed until accepted through the Phase 0 gate.
 | ADR-TND-009 | Ten agent roles, adaptive 6–10 logical lanes, concurrency promoted 3 → 6 → max 10 | Proposed | Satisfies parallelism goal while containing cost/failure |
 | ADR-TND-010 | Human submission only in MVP | Proposed | Limits automation but avoids unauthorized irreversible actions |
 | ADR-TND-011 | Published skills/prompts/workflows are immutable and version-pinned | Proposed | Safer replay/rollback; higher configuration discipline |
-| ADR-TND-012 | Existing Verel event vocabulary remains public; PydanticAI events stay internal | Proposed | Frontend/history compatibility at translation cost |
+| ADR-TND-012 | Existing host-platform event vocabulary remains public; PydanticAI events stay internal | Proposed | Frontend/history compatibility at translation cost |
 | ADR-TND-013 | Read-only and draft-only is the default; external tools absent, not prompt-discouraged | Proposed | Strong safety boundary |
 | ADR-TND-014 | Model provider is selected by policy and conformance, not hard-coded in agents | Proposed | Portability; requires provider-specific testing |
 | ADR-TND-015 | 10x is a measured pilot gate with quality non-inferiority | Proposed | Prevents ungrounded productivity claim |
@@ -80,7 +80,7 @@ Likelihood and impact use Low, Medium, High. A High-impact risk cannot be accept
 | R-20 | Users over-trust confidence/ranking | Medium | High | Evidence-first UI, no false precision, explanations, uncertainty and training | Override/error pattern / Product |
 | R-21 | Bilingual translation changes legal meaning | Medium | High | Preserve original, mark unofficial, cite original, human review when material | Language conflict / Compliance |
 | R-22 | Local Docker stack is mistaken for production architecture | Medium | High | Explicit production ADR, managed dependencies, security and DR gates | Deployment request / Platform |
-| R-23 | Vendor/model lock-in | Medium | Medium | Verel contracts, model policy, golden conformance, portable artifacts/OTel | Provider change / AI lead |
+| R-23 | Vendor/model lock-in | Medium | Medium | host-platform contracts, model policy, golden conformance, portable artifacts/OTel | Provider change / AI lead |
 | R-24 | Contract/copyright restrictions on attachments | Medium | High | Rights metadata, internal access controls, no unauthorized redistribution | Export/source issue / Legal-product |
 
 ## 4. Risk acceptance rules
@@ -110,7 +110,7 @@ Indicative estimate:
 Estimate caveats:
 
 - External portal access, model/provider decisions and company-evidence quality can dominate schedule.
-- Existing Verel components reduce implementation but add integration/compatibility tests.
+- Existing host-platform components reduce implementation but add integration/compatibility tests.
 - Ten-agent concurrency increases evaluation and operational work more than linearly.
 - Submission integration is excluded.
 

@@ -127,7 +127,7 @@ A future external-action tool requires an authorized integration, an ADR, threat
 
 ## 7. Hooks
 
-Use PydanticAI lifecycle hooks and Verel wrapper hooks for observability and guardrails. Hooks are stateless interceptors; Temporal remains the state machine.
+Use PydanticAI lifecycle hooks and host-platform wrapper hooks for observability and guardrails. Hooks are stateless interceptors; Temporal remains the state machine.
 
 | Hook ID | Point | Responsibility | Failure behavior |
 |---|---|---|---|
