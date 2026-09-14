@@ -15,7 +15,7 @@ PydanticAI is the agent runtime, not the workflow engine, authorization system, 
 
 | ID | Principle |
 |---|---|
-| ARC-01 | Verel owns public contracts, state, permissions, events, and side effects; PydanticAI remains replaceable |
+| ARC-01 | host-platform owns public contracts, state, permissions, events, and side effects; PydanticAI remains replaceable |
 | ARC-02 | One durable workflow per tender/bid lifecycle |
 | ARC-03 | One microservice per domain/failure boundary, never one per AI agent |
 | ARC-04 | Strict Pydantic contracts at every API, event, workflow, tool, and agent boundary |
@@ -34,7 +34,7 @@ PydanticAI is the agent runtime, not the workflow engine, authorization system, 
 flowchart LR
     Team["Trading and bid team"] --> UI["Tender Assistant workbench"]
     Admin["Administrator / auditor"] --> UI
-    UI --> Platform["Verel tender capability"]
+    UI --> Platform["host-platform tender capability"]
 
     Platform --> CB["CanadaBuys official datasets and notices"]
     Platform --> Portals["Approved downstream procurement portals"]
@@ -109,9 +109,9 @@ Responsibilities:
 
 Recommended implementation:
 
-- existing Verel React/Vite shell and UI primitives;
+- existing host-platform React/Vite shell and UI primitives;
 - FastAPI with strict Pydantic request/response models;
-- existing Verel capability and route gating;
+- existing host-platform capability and route gating;
 - stable event translator rather than exposing PydanticAI-native events directly.
 
 ### 5.2 Source ingestion workers
@@ -461,7 +461,7 @@ Errors include safe structured stack traces. One actionable event is preferred t
 
 Create a compose.tenders.yaml overlay containing:
 
-- web/API using the existing Verel image;
+- web/API using the existing host-platform image;
 - tender ingestion worker;
 - document worker;
 - PydanticAI/Temporal worker;
@@ -493,7 +493,7 @@ Target layout when implementation is authorized:
 
 ~~~text
 platform/
-  backend/src/verel_platform/
+  backend/src/host_platform/
     tenders/
       api/
       domain/
@@ -509,7 +509,7 @@ platform/
   workers/
     tenders/
   compose.tenders.yaml
-core/packages/verel-core-contracts/
+core/packages/host-core-contracts/
   ...shared workflow and event contracts only
 ~~~
 
@@ -527,7 +527,7 @@ Add tender intelligence as a capability/preset over the existing kernel. Do not 
 | Raw artifacts | S3/MinIO | Database blobs | Immutability, versioning, scale and content-addressed storage |
 | Search MVP | PostgreSQL FTS + pgvector | OpenSearch | Lower operational burden; extract OpenSearch only after measured need |
 | Messaging | Temporal task queues + outbox | Kafka/NATS | Avoid a second distributed control plane until throughput or integration needs prove it |
-| Observability | Existing OTel/Langfuse-compatible stack | Logfire-only | PydanticAI emits OTel and Verel already has OTel integration |
+| Observability | Existing OTel/Langfuse-compatible stack | Logfire-only | PydanticAI emits OTel and host-platform already has OTel integration |
 
 ### Temporal versus DBOS
 

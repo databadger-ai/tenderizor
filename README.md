@@ -6,8 +6,8 @@ Developer handoff package for a supervised AI system that helps a trading and bi
 |---|---|
 | Status | Phase-0 MVP implemented for local development; production promotion gates remain open |
 | Date | 2026-08-06 |
-| Intended host | Verel consolidated platform |
-| Agent runtime | PydanticAI 2.x behind Verel-owned typed contracts |
+| Intended host | the client's consolidated platform |
+| Agent runtime | PydanticAI 2.x behind host-platform-owned typed contracts |
 | Workflow runtime | Temporal, subject to the Phase 0 proof-of-concept gate |
 | Deployment | OCI containers and Docker Compose for local development |
 | Primary interface | Transparent, exception-first React workspace |
@@ -44,7 +44,7 @@ buyer or submit a bid.
 
 ## Executive decision
 
-Build this as a new tender-intelligence capability in the existing Verel platform, not as a separate product fork and not as one microservice per AI agent.
+Build this as a new tender-intelligence capability in the existing host platform, not as a separate product fork and not as one microservice per AI agent.
 
 Use coarse-grained deployable services for API/UI, ingestion, documents, agent workflows, and notifications. Run the supervisor and 6–10 specialist roles through horizontally scalable PydanticAI workers. Temporal owns durable scheduling, retries, fan-out/fan-in, cancellation, timeouts, and human approval waits. PostgreSQL owns business state; object storage owns immutable source documents. The model never owns authorization or the source of truth.
 
@@ -81,7 +81,7 @@ The 10x claim is a release outcome to prove in a controlled pilot, not an assump
 
 - MVP scope is federal CanadaBuys, open non-construction opportunities.
 - Mixed construction/non-construction records are routed to manual review.
-- The solution is added to Verel as a capability manifest and deployable worker set.
+- The solution is added to the host platform as a capability manifest and deployable worker set.
 - English is the working UI language; original French text is preserved and AI translations are labelled unofficial.
 - A Canada-region deployment and a model-provider data-retention posture are preferred but remain procurement/security decisions.
 - Direct automated submission is out of scope unless CanadaBuys or a downstream portal provides and authorizes a suitable integration.

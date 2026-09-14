@@ -4,7 +4,7 @@ This workspace implements the document-defined Phase-0 read-only vertical slice:
 
 `source record -> dossier -> cited requirements -> analyst correction -> audit event`
 
-It is an isolated development capability because the intended Verel application shell is not present in this workspace. Public API contracts, workflow boundaries, and UI feature boundaries are kept explicit so the capability can be integrated into Verel later.
+It is an isolated development capability because the intended host-platform application shell is not present in this workspace. Public API contracts, workflow boundaries, and UI feature boundaries are kept explicit so the capability can be integrated into host-platform later.
 
 ## Included
 
@@ -30,4 +30,4 @@ It is an isolated development capability because the intended Verel application 
 
 ## Promotion gates
 
-Production use still requires the source corpus, procurement review, Verel integration, OIDC/RBAC ownership, official CanadaBuys adapter, object storage, malware scanning, backup/restore evidence, security/privacy review, and the full release gates in `06-QA-ACCEPTANCE.md`.
+Production use still requires the source corpus, procurement review, host-platform integration, OIDC/RBAC ownership, official CanadaBuys adapter, object storage, malware scanning, backup/restore evidence, security/privacy review, and the full release gates in `06-QA-ACCEPTANCE.md`.
